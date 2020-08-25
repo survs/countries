@@ -37,6 +37,7 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     func loadedPage(page: CountryPageModel) {
         self.entity.nextPageURL = page.nextPage
         self.entity.countries.append(contentsOf: page.countries)
+        self.makeSections()
     }
     
     func loadError(error: Error) {
@@ -45,5 +46,13 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     
     
     //MARK: - Module functions
+    
+    func makeSections() {
+        let sections = self.entity.countries.map({ CountryListTableViewCellModel(country: $0) })
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.view?.madeSections(sections: sections)
+        }
+    }
     
 }

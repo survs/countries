@@ -105,6 +105,48 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.image` struct is generated, and contains static references to 4 images.
+  struct image {
+    /// Image `arrowRight`.
+    static let arrowRight = Rswift.ImageResource(bundle: R.hostingBundle, name: "arrowRight")
+    /// Image `capital`.
+    static let capital = Rswift.ImageResource(bundle: R.hostingBundle, name: "capital")
+    /// Image `continent`.
+    static let continent = Rswift.ImageResource(bundle: R.hostingBundle, name: "continent")
+    /// Image `population`.
+    static let population = Rswift.ImageResource(bundle: R.hostingBundle, name: "population")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "arrowRight", bundle: ..., traitCollection: ...)`
+    static func arrowRight(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.arrowRight, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "capital", bundle: ..., traitCollection: ...)`
+    static func capital(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.capital, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "continent", bundle: ..., traitCollection: ...)`
+    static func continent(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.continent, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "population", bundle: ..., traitCollection: ...)`
+    static func population(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.population, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.info` struct is generated, and contains static references to 1 properties.
   struct info {
     struct uiApplicationSceneManifest {
@@ -117,10 +159,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
+    /// Nib `CountryListTableViewCell`.
+    static let countryListTableViewCell = _R.nib._CountryListTableViewCell()
     /// Nib `CountryListViewController`.
     static let countryListViewController = _R.nib._CountryListViewController()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "CountryListTableViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.countryListTableViewCell) instead")
+    static func countryListTableViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.countryListTableViewCell)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CountryListViewController", in: bundle)`
@@ -130,9 +182,21 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    static func countryListTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CountryListTableViewCell? {
+      return R.nib.countryListTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CountryListTableViewCell
+    }
+
     static func countryListViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.countryListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  struct reuseIdentifier {
+    /// Reuse identifier `countryListCell`.
+    static let countryListCell: Rswift.ReuseIdentifier<CountryListTableViewCell> = Rswift.ReuseIdentifier(identifier: "countryListCell")
 
     fileprivate init() {}
   }
@@ -183,12 +247,39 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     #if os(iOS) || os(tvOS)
+    try nib.validate()
+    #endif
+    #if os(iOS) || os(tvOS)
     try storyboard.validate()
     #endif
   }
 
   #if os(iOS) || os(tvOS)
-  struct nib {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _CountryListTableViewCell.validate()
+    }
+
+    struct _CountryListTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
+      typealias ReusableType = CountryListTableViewCell
+
+      let bundle = R.hostingBundle
+      let identifier = "countryListCell"
+      let name = "CountryListTableViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CountryListTableViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CountryListTableViewCell
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "arrowRight", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'arrowRight' is used in nib 'CountryListTableViewCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
+    }
+
     struct _CountryListViewController: Rswift.NibResourceType {
       let bundle = R.hostingBundle
       let name = "CountryListViewController"
