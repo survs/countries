@@ -12,4 +12,7 @@ class CountryListEntity {
     var nextPageURL = Network.initialPageURL
     
     var countries: [CountryModel] = []
+    
+    var isLoading = false
+    var isLoadedAll = false
 }

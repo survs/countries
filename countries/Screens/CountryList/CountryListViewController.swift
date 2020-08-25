@@ -15,6 +15,7 @@ protocol CountryListViewInput: AnyObject {
 
 protocol CountryListViewOutput: AnyObject {
     func reloadData()
+    func displayedCell(row: Int)
 }
 
 class CountryListViewController: UIViewController, CountryListViewInput {
@@ -45,11 +46,15 @@ class CountryListViewController: UIViewController, CountryListViewInput {
         self.tableView.tableFooterView = UIView(frame: .zero)
         self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.register(R.nib.countryListTableViewCell)
+        let refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     // MARK: - CurrencyViewInput
     
     func madeSections(sections: [CountryListTableViewCellModel]) {
+        self.tableView.refreshControl?.endRefreshing()
         self.sections = sections
         self.tableView.reloadData()
     }
@@ -59,11 +64,22 @@ class CountryListViewController: UIViewController, CountryListViewInput {
 
 }
 
+// MARK: - Actions
+
+extension CountryListViewController {
+    @objc
+    func handleRefresh() {
+        self.output?.reloadData()
+    }
+}
+
 
 // MARK: - UITableViewDelegate
 
 extension CountryListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.output?.displayedCell(row: indexPath.row)
+    }
 }
 
 
