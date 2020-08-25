@@ -1,5 +1,5 @@
 //
-//  CountryListEntity.swift
+//  FetchError.swift
 //  countries
 //
 //  Created by Кирилл Баюков on 25.08.2020.
@@ -7,9 +7,3 @@
 //
 
 import Foundation
-
-class CountryListEntity {
-    var nextPageURL = Network.initialPageURL
-    
-    var countries: [CountryModel] = []
-}

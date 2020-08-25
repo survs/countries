@@ -10,6 +10,8 @@
 		7766C936DF6A971CCF1ADB67 /* Pods_countries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6066496D29386E42B06B008A /* Pods_countries.framework */; };
 		ED5F97C424F5009500CFBB94 /* CountryPageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97C324F5009500CFBB94 /* CountryPageResponse.swift */; };
 		ED5F97C624F5009F00CFBB94 /* CountryPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97C524F5009F00CFBB94 /* CountryPageModel.swift */; };
+		ED5F97C824F5018200CFBB94 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97C724F5018200CFBB94 /* Network.swift */; };
+		ED5F97CA24F502B800CFBB94 /* FetchError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97C924F502B800CFBB94 /* FetchError.swift */; };
 		EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE23F24F4F12300F67339 /* AppDelegate.swift */; };
 		EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE24824F4F12300F67339 /* countries.xcdatamodeld */; };
 		EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDDE24B24F4F12600F67339 /* Assets.xcassets */; };
@@ -32,6 +34,8 @@
 		8319CE2A3F91C0C7B91C6014 /* Pods-countries.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-countries.release.xcconfig"; path = "Target Support Files/Pods-countries/Pods-countries.release.xcconfig"; sourceTree = "<group>"; };
 		ED5F97C324F5009500CFBB94 /* CountryPageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPageResponse.swift; sourceTree = "<group>"; };
 		ED5F97C524F5009F00CFBB94 /* CountryPageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPageModel.swift; sourceTree = "<group>"; };
+		ED5F97C724F5018200CFBB94 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		ED5F97C924F502B800CFBB94 /* FetchError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchError.swift; sourceTree = "<group>"; };
 		EDDDE23C24F4F12300F67339 /* countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDDE23F24F4F12300F67339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDDE24924F4F12300F67339 /* countries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = countries.xcdatamodel; sourceTree = "<group>"; };
@@ -144,6 +148,7 @@
 		EDDDE25A24F4F35400F67339 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				ED5F97C724F5018200CFBB94 /* Network.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			children = (
 				EDEC2BC524F4FC8D0031244E /* CountryModel.swift */,
 				ED5F97C524F5009F00CFBB94 /* CountryPageModel.swift */,
+				ED5F97C924F502B800CFBB94 /* FetchError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -337,6 +343,8 @@
 				EDDDE26224F4F43800F67339 /* CountryListRouter.swift in Sources */,
 				ED5F97C624F5009F00CFBB94 /* CountryPageModel.swift in Sources */,
 				EDDDE26624F4F51900F67339 /* CountryListPresenter.swift in Sources */,
+				ED5F97CA24F502B800CFBB94 /* FetchError.swift in Sources */,
+				ED5F97C824F5018200CFBB94 /* Network.swift in Sources */,
 				EDDDE26024F4F42700F67339 /* CountryListEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

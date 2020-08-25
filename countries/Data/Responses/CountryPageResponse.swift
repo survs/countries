@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CountryPageResponse {
+struct CountryPageResponse: Decodable {
     var nextPage: String?
     var countries: [CountryResponse]?
     

@@ -23,7 +23,25 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     let entity = CountryListEntity()
     
     
+    // MARK: - ViewOutput
+    
+    func reloadData() {
+        self.entity.nextPageURL = Network.initialPageURL
+        if let url = self.entity.nextPageURL {
+            self.interactor?.fetchPage(url: url)
+        }
+    }
+    
     // MARK: - InteractorOutput
+    
+    func loadedPage(page: CountryPageModel) {
+        self.entity.nextPageURL = page.nextPage
+        self.entity.countries.append(contentsOf: page.countries)
+    }
+    
+    func loadError(error: Error) {
+        
+    }
     
     
     //MARK: - Module functions

@@ -14,7 +14,7 @@ protocol CountryListViewInput: AnyObject {
 }
 
 protocol CountryListViewOutput: AnyObject {
-
+    func reloadData()
 }
 
 class CountryListViewController: UIViewController, CountryListViewInput {
@@ -30,6 +30,7 @@ class CountryListViewController: UIViewController, CountryListViewInput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.output?.reloadData()
         self.setupView()
     }
     
