@@ -22,6 +22,7 @@
 		ED6A80AF24F5101B0043FDD1 /* CountryDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80AE24F5101B0043FDD1 /* CountryDetailInteractor.swift */; };
 		ED6A80B224F510360043FDD1 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */; };
 		ED6A80B324F510360043FDD1 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */; };
+		ED6A80CA24F63EA90043FDD1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80C924F63EA90043FDD1 /* ImageDownloader.swift */; };
 		EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE23F24F4F12300F67339 /* AppDelegate.swift */; };
 		EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE24824F4F12300F67339 /* countries.xcdatamodeld */; };
 		EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDDE24B24F4F12600F67339 /* Assets.xcassets */; };
@@ -56,6 +57,7 @@
 		ED6A80AE24F5101B0043FDD1 /* CountryDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailInteractor.swift; sourceTree = "<group>"; };
 		ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
 		ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
+		ED6A80C924F63EA90043FDD1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		EDDDE23C24F4F12300F67339 /* countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDDE23F24F4F12300F67339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDDE24924F4F12300F67339 /* countries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = countries.xcdatamodel; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				ED5F97C724F5018200CFBB94 /* Network.swift */,
+				ED6A80C924F63EA90043FDD1 /* ImageDownloader.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				ED5F97C424F5009500CFBB94 /* CountryPageResponse.swift in Sources */,
 				ED6A80AF24F5101B0043FDD1 /* CountryDetailInteractor.swift in Sources */,
 				ED6A80B224F510360043FDD1 /* CountryDetailViewController.swift in Sources */,
+				ED6A80CA24F63EA90043FDD1 /* ImageDownloader.swift in Sources */,
 				EDDDE26424F4F50E00F67339 /* CountryListInteractor.swift in Sources */,
 				EDEC2BC624F4FC8D0031244E /* CountryModel.swift in Sources */,
 				EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */,
