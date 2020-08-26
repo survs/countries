@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let vc = CountryListAssembly.createVC()
         let nav = UINavigationController(rootViewController: vc)
+        CountryListAssembly.configureVC(vc: vc)
         self.window?.rootViewController = nav
         self.window?.makeKeyAndVisible()
     }

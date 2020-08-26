@@ -1,5 +1,5 @@
 //
-//  CountryListEntity.swift
+//  CountryPageModel.swift
 //  countries
 //
 //  Created by Кирилл Баюков on 25.08.2020.
@@ -8,11 +8,7 @@
 
 import Foundation
 
-class CountryListEntity {
-    var nextPageURL = Network.initialPageURL
-    
+class CountryPageModel {
+    var nextPage: URL?
     var countries: [CountryModel] = []
-    
-    var isLoading = false
-    var isLoadedAll = false
 }
