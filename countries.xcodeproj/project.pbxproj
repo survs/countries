@@ -23,6 +23,9 @@
 		ED6A80B224F510360043FDD1 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */; };
 		ED6A80B324F510360043FDD1 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */; };
 		ED6A80CA24F63EA90043FDD1 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80C924F63EA90043FDD1 /* ImageDownloader.swift */; };
+		ED6A80CE24F649150043FDD1 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80CC24F649150043FDD1 /* ImageCollectionViewCell.swift */; };
+		ED6A80CF24F649150043FDD1 /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6A80CD24F649150043FDD1 /* ImageCollectionViewCell.xib */; };
+		ED6A80D124F6493C0043FDD1 /* ImageCollectionViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80D024F6493C0043FDD1 /* ImageCollectionViewCellModel.swift */; };
 		EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE23F24F4F12300F67339 /* AppDelegate.swift */; };
 		EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE24824F4F12300F67339 /* countries.xcdatamodeld */; };
 		EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDDE24B24F4F12600F67339 /* Assets.xcassets */; };
@@ -58,6 +61,9 @@
 		ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
 		ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
 		ED6A80C924F63EA90043FDD1 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		ED6A80CC24F649150043FDD1 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		ED6A80CD24F649150043FDD1 /* ImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionViewCell.xib; sourceTree = "<group>"; };
+		ED6A80D024F6493C0043FDD1 /* ImageCollectionViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCellModel.swift; sourceTree = "<group>"; };
 		EDDDE23C24F4F12300F67339 /* countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDDE23F24F4F12300F67339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDDE24924F4F12300F67339 /* countries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = countries.xcdatamodel; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 		ED5F97CC24F5057F00CFBB94 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				ED6A80CB24F648BF0043FDD1 /* ImageCollectionViewCell */,
 				ED5F97CD24F5058600CFBB94 /* CountryListTableViewCell */,
 			);
 			path = Cells;
@@ -145,6 +152,16 @@
 				ED6A80A624F510000043FDD1 /* CountryDetailEntity.swift */,
 			);
 			path = CountryDetail;
+			sourceTree = "<group>";
+		};
+		ED6A80CB24F648BF0043FDD1 /* ImageCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A80CC24F649150043FDD1 /* ImageCollectionViewCell.swift */,
+				ED6A80CD24F649150043FDD1 /* ImageCollectionViewCell.xib */,
+				ED6A80D024F6493C0043FDD1 /* ImageCollectionViewCellModel.swift */,
+			);
+			path = ImageCollectionViewCell;
 			sourceTree = "<group>";
 		};
 		EDDDE23324F4F12300F67339 = {
@@ -266,8 +283,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDDDE25324F4F12600F67339 /* Build configuration list for PBXNativeTarget "countries" */;
 			buildPhases = (
-				EDDDE25624F4F2D600F67339 /* R.swift */,
 				6F151DFFE193301BAA4BAB72 /* [CP] Check Pods Manifest.lock */,
+				EDDDE25624F4F2D600F67339 /* R.swift */,
 				EDDDE23824F4F12300F67339 /* Sources */,
 				EDDDE23924F4F12300F67339 /* Frameworks */,
 				EDDDE23A24F4F12300F67339 /* Resources */,
@@ -323,6 +340,7 @@
 				EDDDE24F24F4F12600F67339 /* LaunchScreen.storyboard in Resources */,
 				EDDDE27224F4FA3300F67339 /* Localizable.strings in Resources */,
 				ED6A80B324F510360043FDD1 /* CountryDetailViewController.xib in Resources */,
+				ED6A80CF24F649150043FDD1 /* ImageCollectionViewCell.xib in Resources */,
 				EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */,
 				ED5F97D124F5059500CFBB94 /* CountryListTableViewCell.xib in Resources */,
 				EDDDE26C24F4F57000F67339 /* CountryListViewController.xib in Resources */,
@@ -385,7 +403,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -399,6 +417,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDDDE26B24F4F57000F67339 /* CountryListViewController.swift in Sources */,
+				ED6A80CE24F649150043FDD1 /* ImageCollectionViewCell.swift in Sources */,
+				ED6A80D124F6493C0043FDD1 /* ImageCollectionViewCellModel.swift in Sources */,
 				ED6A80AD24F510140043FDD1 /* CountryDetailPresenter.swift in Sources */,
 				ED6A80AB24F5100F0043FDD1 /* CountryDetailAssembly.swift in Sources */,
 				EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */,

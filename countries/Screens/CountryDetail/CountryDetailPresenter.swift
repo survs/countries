@@ -6,7 +6,7 @@
 //  Copyright © 2020 bayukov. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol CountryDetailPresenterInput {
     
@@ -31,27 +31,48 @@ class CountryDetailPresenter: CountryDetailPresenterInput, CountryDetailViewOutp
     
     func viewDidLoad() {
         self.view?.loadedCountry(country: self.entity.country)
-        if let images = self.entity.country.images {
-            
+        if self.entity.country.images != nil {
+            self.makeSections()
         } else if let imageURLS = self.entity.country.imageURLS {
-            ImageDownloader.downloadImages(urls: imageURLS) { images in
-                
-            }
+            self.interactor?.downloadImages(urls: imageURLS)
         } else if let flag = self.entity.country.flagImage {
-            
+            self.entity.country.images = [flag]
         } else if let flagURL = self.entity.country.flagUrl {
-            ImageDownloader.downloadImages(urls: [flagURL]) { images in
-                
-            }
+            self.entity.isTryingToLoadFlag = false
+            self.interactor?.downloadImages(urls: [flagURL])
         }
     }
     
     // MARK: - InteractorOutput
     
-    
+    func loadedImages(images: [UIImage]) {
+        if images.isEmpty, !self.entity.isTryingToLoadFlag, let flagURL = self.entity.country.flagUrl {
+            self.interactor?.downloadImages(urls: [flagURL])
+        } else {
+            self.entity.country.images = images
+            self.makeSections()
+        }
+    }
     
     
     //MARK: - Module functions
+    
+    func makeSections() {
+        if let images = self.entity.country.images {
+            var sections: [ImageCollectionViewCellModel] = []
+            for image in images {
+                let model = ImageCollectionViewCellModel(image: image)
+                model.showImage = {
+                    self.view?.openImage(image: image)
+                }
+                sections.append(model)
+            }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.view?.madeSections(sections: sections)
+            }
+        }
+    }
     
     
 }
