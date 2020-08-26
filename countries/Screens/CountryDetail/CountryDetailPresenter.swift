@@ -31,6 +31,19 @@ class CountryDetailPresenter: CountryDetailPresenterInput, CountryDetailViewOutp
     
     func viewDidLoad() {
         self.view?.loadedCountry(country: self.entity.country)
+        if let images = self.entity.country.images {
+            
+        } else if let imageURLS = self.entity.country.imageURLS {
+            ImageDownloader.downloadImages(urls: imageURLS) { images in
+                
+            }
+        } else if let flag = self.entity.country.flagImage {
+            
+        } else if let flagURL = self.entity.country.flagUrl {
+            ImageDownloader.downloadImages(urls: [flagURL]) { images in
+                
+            }
+        }
     }
     
     // MARK: - InteractorOutput

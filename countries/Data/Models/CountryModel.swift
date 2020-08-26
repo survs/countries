@@ -24,7 +24,13 @@ class CountryModel {
         return URL(string: self.flagPath)
     }
     
-    var imageURLS: [URL?] {
-        return self.imagePaths.map({ URL(string: $0) })
+    var imageURLS: [URL]? {
+        var urls: [URL] = []
+        for path in self.imagePaths {
+            if let url = URL(string: path) {
+                urls.append(url)
+            }
+        }
+        return urls.isEmpty ? nil : urls
     }
 }
