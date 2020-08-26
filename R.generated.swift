@@ -187,7 +187,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
     /// Nib `CountryDetailViewController`.
     static let countryDetailViewController = _R.nib._CountryDetailViewController()
@@ -195,6 +195,8 @@ struct R: Rswift.Validatable {
     static let countryListTableViewCell = _R.nib._CountryListTableViewCell()
     /// Nib `CountryListViewController`.
     static let countryListViewController = _R.nib._CountryListViewController()
+    /// Nib `ImageCollectionViewCell`.
+    static let imageCollectionViewCell = _R.nib._ImageCollectionViewCell()
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CountryDetailViewController", in: bundle)`
@@ -220,6 +222,14 @@ struct R: Rswift.Validatable {
     }
     #endif
 
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "ImageCollectionViewCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.imageCollectionViewCell) instead")
+    static func imageCollectionViewCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.imageCollectionViewCell)
+    }
+    #endif
+
     static func countryDetailViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
       return R.nib.countryDetailViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
@@ -232,13 +242,19 @@ struct R: Rswift.Validatable {
       return R.nib.countryListViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
     }
 
+    static func imageCollectionViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ImageCollectionViewCell? {
+      return R.nib.imageCollectionViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ImageCollectionViewCell
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 2 reuse identifiers.
   struct reuseIdentifier {
     /// Reuse identifier `countryListCell`.
     static let countryListCell: Rswift.ReuseIdentifier<CountryListTableViewCell> = Rswift.ReuseIdentifier(identifier: "countryListCell")
+    /// Reuse identifier `imageCell`.
+    static let imageCell: Rswift.ReuseIdentifier<ImageCollectionViewCell> = Rswift.ReuseIdentifier(identifier: "imageCell")
 
     fileprivate init() {}
   }
@@ -422,6 +438,20 @@ struct _R: Rswift.Validatable {
 
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      fileprivate init() {}
+    }
+
+    struct _ImageCollectionViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = ImageCollectionViewCell
+
+      let bundle = R.hostingBundle
+      let identifier = "imageCell"
+      let name = "ImageCollectionViewCell"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> ImageCollectionViewCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? ImageCollectionViewCell
       }
 
       fileprivate init() {}

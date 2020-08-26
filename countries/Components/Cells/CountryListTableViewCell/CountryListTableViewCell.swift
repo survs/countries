@@ -42,6 +42,10 @@ class CountryListTableViewCell: UITableViewCell {
         self.capitalLabel.text = model.country.capital
         self.descriptionLabel.text = model.country.descriptionShort.isEmpty ? nil : model.country.descriptionShort
         self.descriptionLabelTopConstraint.constant = model.descriptionTopConstraint
+        self.flagImageView.image = model.country.flagImage
+        model.updateFlag = {
+            self.flagImageView.image = model.country.flagImage
+        }
     }
     
     

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import Agrume
 
 protocol CountryDetailViewInput: AnyObject {
     func loadedCountry(country: CountryModel)
+    func madeSections(sections: [ImageCollectionViewCellModel])
+    func openImage(image: UIImage)
 }
 
 protocol CountryDetailViewOutput: AnyObject {
@@ -30,6 +33,8 @@ class CountryDetailViewController: UIViewController, CountryDetailViewInput {
     @IBOutlet private weak var pageControl: UIPageControl!
     
     var output: CountryDetailViewOutput?
+    
+    var sections: [ImageCollectionViewCellModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +62,10 @@ class CountryDetailViewController: UIViewController, CountryDetailViewInput {
         self.populationWordLabel.text = R.string.localizable.population()
         self.continentWordLabel.text = R.string.localizable.continent()
         self.aboutWordLabel.text = R.string.localizable.about_country()
+        
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
+        self.collectionView.register(R.nib.imageCollectionViewCell)
     }
     
     // MARK: - ViewInput
@@ -73,5 +82,58 @@ class CountryDetailViewController: UIViewController, CountryDetailViewInput {
         formatter.groupingSeparator = " "
         self.populationLabel.text = formatter.string(from: country.population as NSNumber)
     }
+    
+    func madeSections(sections: [ImageCollectionViewCellModel]) {
+        self.sections = sections
+        self.collectionView.reloadData()
+        self.pageControl.isHidden = sections.count <= 1
+        self.pageControl.currentPage = 0
+        self.pageControl.numberOfPages = sections.count
+    }
+    
+    func openImage(image: UIImage) {
+        let agrume = Agrume(image: image)
+        agrume.show(from: self)
+    }
 
+}
+
+
+// MARK: - UICollectionViewDelegate
+
+extension CountryDetailViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return ImageCollectionViewCellModel.cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        self.pageControl.currentPage = indexPath.item
+    }
+}
+
+
+// MARK: - UICollectionViewDataSource
+
+extension CountryDetailViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCollectionViewCellModel.identifier, for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.model = self.sections[indexPath.item]
+        return cell
+    }
 }

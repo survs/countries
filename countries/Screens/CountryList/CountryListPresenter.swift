@@ -78,7 +78,19 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     }
     
     func makeSections() {
-        let sections = self.entity.countries.map({ CountryListTableViewCellModel(country: $0) })
+        var sections: [CountryListTableViewCellModel] = []
+        for country in self.entity.countries {
+            let model = CountryListTableViewCellModel(country: country)
+            if let flagURL = country.flagUrl {
+                ImageDownloader.downloadImages(urls: [flagURL]) { images in
+                    DispatchQueue.main.async {
+                        country.flagImage = images.first
+                        model.loadedImages(country: country)
+                    }
+                }
+            }
+            sections.append(model)
+        }
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.view?.madeSections(sections: sections)

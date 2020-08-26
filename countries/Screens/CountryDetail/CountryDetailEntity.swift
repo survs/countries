@@ -11,6 +11,8 @@ import Foundation
 class CountryDetailEntity {
     let country: CountryModel
     
+    var isTryingToLoadFlag = false
+    
     init(country: CountryModel) {
         self.country = country
     }
