@@ -7,3 +7,7 @@
 */
 
 "country_list" = "Страны";
+"capital" = "Столица";
+"population" = "Население";
+"continent" = "Континент";
+"about_country" = "О стране";
