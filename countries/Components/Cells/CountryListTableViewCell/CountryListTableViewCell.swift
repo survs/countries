@@ -24,6 +24,15 @@ class CountryListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        
+        self.countryLabel.textColor = R.color.primaryTextColor()
+        self.countryLabel.font = .systemFont(ofSize: 17, weight: .medium)
+        
+        self.capitalLabel.textColor = R.color.secondaryTextColor()
+        self.capitalLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        
+        self.descriptionLabel.textColor = R.color.secondaryTextColor()
+        self.descriptionLabel.font = .systemFont(ofSize: 15, weight: .regular)
         // Initialization code
     }
     

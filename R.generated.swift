@@ -105,6 +105,34 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.color` struct is generated, and contains static references to 2 colors.
+  struct color {
+    /// Color `primaryTextColor`.
+    static let primaryTextColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "primaryTextColor")
+    /// Color `secondaryTextColor`.
+    static let secondaryTextColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "secondaryTextColor")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "primaryTextColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func primaryTextColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.primaryTextColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "secondaryTextColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func secondaryTextColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.secondaryTextColor, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.image` struct is generated, and contains static references to 4 images.
   struct image {
     /// Image `arrowRight`.
@@ -159,12 +187,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
+    /// Nib `CountryDetailViewController`.
+    static let countryDetailViewController = _R.nib._CountryDetailViewController()
     /// Nib `CountryListTableViewCell`.
     static let countryListTableViewCell = _R.nib._CountryListTableViewCell()
     /// Nib `CountryListViewController`.
     static let countryListViewController = _R.nib._CountryListViewController()
+
+    #if os(iOS) || os(tvOS)
+    /// `UINib(name: "CountryDetailViewController", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.countryDetailViewController) instead")
+    static func countryDetailViewController(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.countryDetailViewController)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UINib(name: "CountryListTableViewCell", in: bundle)`
@@ -181,6 +219,10 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.countryListViewController)
     }
     #endif
+
+    static func countryDetailViewController(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+      return R.nib.countryDetailViewController.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+    }
 
     static func countryListTableViewCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> CountryListTableViewCell? {
       return R.nib.countryListTableViewCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? CountryListTableViewCell
@@ -203,12 +245,88 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 5 localization keys.
     struct localizable {
+      /// ru translation: Континент
+      ///
+      /// Locales: ru
+      static let continent = Rswift.StringResource(key: "continent", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Население
+      ///
+      /// Locales: ru
+      static let population = Rswift.StringResource(key: "population", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: О стране
+      ///
+      /// Locales: ru
+      static let about_country = Rswift.StringResource(key: "about_country", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+      /// ru translation: Столица
+      ///
+      /// Locales: ru
+      static let capital = Rswift.StringResource(key: "capital", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
       /// ru translation: Страны
       ///
       /// Locales: ru
       static let country_list = Rswift.StringResource(key: "country_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["ru"], comment: nil)
+
+      /// ru translation: Континент
+      ///
+      /// Locales: ru
+      static func continent(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("continent", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "continent"
+        }
+
+        return NSLocalizedString("continent", bundle: bundle, comment: "")
+      }
+
+      /// ru translation: Население
+      ///
+      /// Locales: ru
+      static func population(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("population", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "population"
+        }
+
+        return NSLocalizedString("population", bundle: bundle, comment: "")
+      }
+
+      /// ru translation: О стране
+      ///
+      /// Locales: ru
+      static func about_country(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("about_country", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "about_country"
+        }
+
+        return NSLocalizedString("about_country", bundle: bundle, comment: "")
+      }
+
+      /// ru translation: Столица
+      ///
+      /// Locales: ru
+      static func capital(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("capital", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "capital"
+        }
+
+        return NSLocalizedString("capital", bundle: bundle, comment: "")
+      }
 
       /// ru translation: Страны
       ///
@@ -257,7 +375,25 @@ struct _R: Rswift.Validatable {
   #if os(iOS) || os(tvOS)
   struct nib: Rswift.Validatable {
     static func validate() throws {
+      try _CountryDetailViewController.validate()
       try _CountryListTableViewCell.validate()
+    }
+
+    struct _CountryDetailViewController: Rswift.NibResourceType, Rswift.Validatable {
+      let bundle = R.hostingBundle
+      let name = "CountryDetailViewController"
+
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> UIKit.UIView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? UIKit.UIView
+      }
+
+      static func validate() throws {
+        if UIKit.UIImage(named: "capital", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'capital' is used in nib 'CountryDetailViewController', but couldn't be loaded.") }
+        if #available(iOS 11.0, tvOS 11.0, *) {
+        }
+      }
+
+      fileprivate init() {}
     }
 
     struct _CountryListTableViewCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {

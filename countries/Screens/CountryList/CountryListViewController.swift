@@ -16,6 +16,7 @@ protocol CountryListViewInput: AnyObject {
 protocol CountryListViewOutput: AnyObject {
     func reloadData()
     func displayedCell(row: Int)
+    func selectedCell(row: Int)
 }
 
 class CountryListViewController: UIViewController, CountryListViewInput {
@@ -35,10 +36,10 @@ class CountryListViewController: UIViewController, CountryListViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.output?.reloadData()
-        self.setupView()
+        self.setupViews()
     }
     
-    func setupView() {
+    func setupViews() {
         self.title = R.string.localizable.country_list()
         
         self.tableView.delegate = self
@@ -79,6 +80,10 @@ extension CountryListViewController {
 extension CountryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         self.output?.displayedCell(row: indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.output?.selectedCell(row: indexPath.row)
     }
 }
 

@@ -15,6 +15,13 @@
 		ED5F97D024F5059500CFBB94 /* CountryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97CE24F5059500CFBB94 /* CountryListTableViewCell.swift */; };
 		ED5F97D124F5059500CFBB94 /* CountryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED5F97CF24F5059500CFBB94 /* CountryListTableViewCell.xib */; };
 		ED5F97D324F5082A00CFBB94 /* CountryListTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED5F97D224F5082A00CFBB94 /* CountryListTableViewCellModel.swift */; };
+		ED6A80A724F510000043FDD1 /* CountryDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80A624F510000043FDD1 /* CountryDetailEntity.swift */; };
+		ED6A80A924F510050043FDD1 /* CountryDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80A824F510050043FDD1 /* CountryDetailRouter.swift */; };
+		ED6A80AB24F5100F0043FDD1 /* CountryDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80AA24F5100F0043FDD1 /* CountryDetailAssembly.swift */; };
+		ED6A80AD24F510140043FDD1 /* CountryDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80AC24F510140043FDD1 /* CountryDetailPresenter.swift */; };
+		ED6A80AF24F5101B0043FDD1 /* CountryDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80AE24F5101B0043FDD1 /* CountryDetailInteractor.swift */; };
+		ED6A80B224F510360043FDD1 /* CountryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */; };
+		ED6A80B324F510360043FDD1 /* CountryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */; };
 		EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE23F24F4F12300F67339 /* AppDelegate.swift */; };
 		EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EDDDE24824F4F12300F67339 /* countries.xcdatamodeld */; };
 		EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EDDDE24B24F4F12600F67339 /* Assets.xcassets */; };
@@ -42,6 +49,13 @@
 		ED5F97CE24F5059500CFBB94 /* CountryListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTableViewCell.swift; sourceTree = "<group>"; };
 		ED5F97CF24F5059500CFBB94 /* CountryListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryListTableViewCell.xib; sourceTree = "<group>"; };
 		ED5F97D224F5082A00CFBB94 /* CountryListTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTableViewCellModel.swift; sourceTree = "<group>"; };
+		ED6A80A624F510000043FDD1 /* CountryDetailEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailEntity.swift; sourceTree = "<group>"; };
+		ED6A80A824F510050043FDD1 /* CountryDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailRouter.swift; sourceTree = "<group>"; };
+		ED6A80AA24F5100F0043FDD1 /* CountryDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailAssembly.swift; sourceTree = "<group>"; };
+		ED6A80AC24F510140043FDD1 /* CountryDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailPresenter.swift; sourceTree = "<group>"; };
+		ED6A80AE24F5101B0043FDD1 /* CountryDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailInteractor.swift; sourceTree = "<group>"; };
+		ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewController.swift; sourceTree = "<group>"; };
+		ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryDetailViewController.xib; sourceTree = "<group>"; };
 		EDDDE23C24F4F12300F67339 /* countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = countries.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDDDE23F24F4F12300F67339 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EDDDE24924F4F12300F67339 /* countries.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = countries.xcdatamodel; sourceTree = "<group>"; };
@@ -117,6 +131,20 @@
 			path = CountryListTableViewCell;
 			sourceTree = "<group>";
 		};
+		ED6A80A524F50FBC0043FDD1 /* CountryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				ED6A80AA24F5100F0043FDD1 /* CountryDetailAssembly.swift */,
+				ED6A80B024F510360043FDD1 /* CountryDetailViewController.swift */,
+				ED6A80B124F510360043FDD1 /* CountryDetailViewController.xib */,
+				ED6A80AC24F510140043FDD1 /* CountryDetailPresenter.swift */,
+				ED6A80AE24F5101B0043FDD1 /* CountryDetailInteractor.swift */,
+				ED6A80A824F510050043FDD1 /* CountryDetailRouter.swift */,
+				ED6A80A624F510000043FDD1 /* CountryDetailEntity.swift */,
+			);
+			path = CountryDetail;
+			sourceTree = "<group>";
+		};
 		EDDDE23324F4F12300F67339 = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +201,7 @@
 		EDDDE25924F4F34800F67339 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				ED6A80A524F50FBC0043FDD1 /* CountryDetail */,
 				EDDDE25E24F4F39100F67339 /* CountryList */,
 			);
 			path = Screens;
@@ -290,6 +319,7 @@
 			files = (
 				EDDDE24F24F4F12600F67339 /* LaunchScreen.storyboard in Resources */,
 				EDDDE27224F4FA3300F67339 /* Localizable.strings in Resources */,
+				ED6A80B324F510360043FDD1 /* CountryDetailViewController.xib in Resources */,
 				EDDDE24C24F4F12600F67339 /* Assets.xcassets in Resources */,
 				ED5F97D124F5059500CFBB94 /* CountryListTableViewCell.xib in Resources */,
 				EDDDE26C24F4F57000F67339 /* CountryListViewController.xib in Resources */,
@@ -366,10 +396,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDDDE26B24F4F57000F67339 /* CountryListViewController.swift in Sources */,
+				ED6A80AD24F510140043FDD1 /* CountryDetailPresenter.swift in Sources */,
+				ED6A80AB24F5100F0043FDD1 /* CountryDetailAssembly.swift in Sources */,
 				EDDDE24024F4F12300F67339 /* AppDelegate.swift in Sources */,
 				EDDDE26E24F4F78700F67339 /* R.generated.swift in Sources */,
 				EDEC2BC824F4FDA60031244E /* CountryResponse.swift in Sources */,
+				ED6A80A924F510050043FDD1 /* CountryDetailRouter.swift in Sources */,
 				ED5F97C424F5009500CFBB94 /* CountryPageResponse.swift in Sources */,
+				ED6A80AF24F5101B0043FDD1 /* CountryDetailInteractor.swift in Sources */,
+				ED6A80B224F510360043FDD1 /* CountryDetailViewController.swift in Sources */,
 				EDDDE26424F4F50E00F67339 /* CountryListInteractor.swift in Sources */,
 				EDEC2BC624F4FC8D0031244E /* CountryModel.swift in Sources */,
 				EDDDE24A24F4F12300F67339 /* countries.xcdatamodeld in Sources */,
@@ -377,6 +412,7 @@
 				EDDDE26824F4F52200F67339 /* CountryListAssembly.swift in Sources */,
 				EDDDE26224F4F43800F67339 /* CountryListRouter.swift in Sources */,
 				ED5F97C624F5009F00CFBB94 /* CountryPageModel.swift in Sources */,
+				ED6A80A724F510000043FDD1 /* CountryDetailEntity.swift in Sources */,
 				EDDDE26624F4F51900F67339 /* CountryListPresenter.swift in Sources */,
 				ED5F97D024F5059500CFBB94 /* CountryListTableViewCell.swift in Sources */,
 				ED5F97CA24F502B800CFBB94 /* FetchError.swift in Sources */,

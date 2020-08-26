@@ -26,6 +26,7 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     // MARK: - ViewOutput
     
     func reloadData() {
+        
         if !self.entity.isLoading {
             self.entity.nextPageURL = Network.initialPageURL
             self.entity.countries = []
@@ -42,6 +43,12 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     func displayedCell(row: Int) {
         if row == self.entity.countries.count - 2 {
             self.loadData()
+        }
+    }
+    
+    func selectedCell(row: Int) {
+        if row < self.entity.countries.count {
+            self.router?.openCountry(country: self.entity.countries[row])
         }
     }
     
