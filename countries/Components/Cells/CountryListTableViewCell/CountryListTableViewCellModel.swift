@@ -10,7 +10,7 @@ import UIKit
 
 class CountryListTableViewCellModel {
     
-    let country: CountryModel
+    var country: CountryModel
     
     static let identifier = "countryListCell"
     
@@ -21,5 +21,12 @@ class CountryListTableViewCellModel {
     init(country: CountryModel) {
         self.country = country
     }
+    
+    func loadedImages(country: CountryModel) {
+        self.country = country
+        self.updateFlag?()
+    }
+    
+    var updateFlag: (() -> Void)?
     
 }

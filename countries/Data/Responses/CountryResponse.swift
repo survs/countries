@@ -52,8 +52,6 @@ struct CountryResponse: Decodable {
             model.imagePaths = images
         } else if let image = self.image {
             model.imagePaths = [image]
-        } else {
-            model.imagePaths = [model.flagPath]
         }
         return model
     }
