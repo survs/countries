@@ -17,6 +17,7 @@ protocol CountryListViewOutput: AnyObject {
     func reloadData()
     func displayedCell(row: Int)
     func selectedCell(row: Int)
+    func viewDidLoad()
 }
 
 class CountryListViewController: UIViewController, CountryListViewInput {
@@ -35,7 +36,7 @@ class CountryListViewController: UIViewController, CountryListViewInput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.output?.reloadData()
+        self.output?.viewDidLoad()
         self.setupViews()
     }
     
@@ -49,6 +50,7 @@ class CountryListViewController: UIViewController, CountryListViewInput {
         self.tableView.register(R.nib.countryListTableViewCell)
         let refreshControl = UIRefreshControl()
         self.tableView.refreshControl = refreshControl
+        self.tableView.refreshControl?.tintColor = R.color.primaryTextColor()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     

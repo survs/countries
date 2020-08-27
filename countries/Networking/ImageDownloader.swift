@@ -16,7 +16,7 @@ class ImageDownloader {
             var images: [Any] = urls
             for url in urls {
                 group.enter()
-                URLSession.shared.dataTask(with: url) { (data, response, error) in
+                Network.session.dataTask(with: url) { (data, response, error) in
                     if let data = data, let image = UIImage(data: data), let index = images.firstIndex(where: { ($0 as? URL)?.relativePath == response?.url?.relativePath }) {
                         images.remove(at: index)
                         images.insert(image, at: index)

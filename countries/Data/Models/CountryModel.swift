@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CountryModel {
     var name = ""
@@ -32,5 +33,17 @@ class CountryModel {
             }
         }
         return urls.isEmpty ? nil : urls
+    }
+    
+    func mapToRepository(entity: NSEntityDescription, context: NSManagedObjectContext) -> CountryEntity {//(entity: NSEntityDescription) -> CountryEntity {
+        let entity = CountryEntity(entity: entity, insertInto: context)
+        entity.name = self.name
+        entity.capital = self.capital
+        entity.desc = self.description
+        entity.descShort = self.descriptionShort
+        entity.population = self.population as NSNumber
+        entity.imagePaths = self.imagePaths as NSObject
+        entity.flagPath = self.flagPath
+        return entity
     }
 }
