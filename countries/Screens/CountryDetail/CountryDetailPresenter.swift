@@ -33,10 +33,11 @@ class CountryDetailPresenter: CountryDetailPresenterInput, CountryDetailViewOutp
         self.view?.loadedCountry(country: self.entity.country)
         if self.entity.country.images != nil {
             self.makeSections()
-        } else if let imageURLS = self.entity.country.imageURLS {
-            self.interactor?.downloadImages(urls: imageURLS)
+        } else if let imageURLs = self.entity.country.imageURLs {
+            self.interactor?.downloadImages(urls: imageURLs)
         } else if let flag = self.entity.country.flagImage {
             self.entity.country.images = [flag]
+            self.makeSections()
         } else if let flagURL = self.entity.country.flagUrl {
             self.entity.isTryingToLoadFlag = false
             self.interactor?.downloadImages(urls: [flagURL])
@@ -45,11 +46,14 @@ class CountryDetailPresenter: CountryDetailPresenterInput, CountryDetailViewOutp
     
     // MARK: - InteractorOutput
     
-    func loadedImages(images: [UIImage]) {
+    func loadedImages(images: [UIImage], urls: [URL]) {
         if images.isEmpty, !self.entity.isTryingToLoadFlag, let flagURL = self.entity.country.flagUrl {
+            self.entity.isTryingToLoadFlag = true
             self.interactor?.downloadImages(urls: [flagURL])
         } else {
             self.entity.country.images = images
+            self.entity.country.localImageURLs = urls
+            self.interactor?.updateCountry(country: self.entity.country)
             self.makeSections()
         }
     }

@@ -25,8 +25,11 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     
     // MARK: - ViewOutput
     
+    func viewDidLoad() {
+        self.loadData()
+    }
+    
     func reloadData() {
-        
         if !self.entity.isLoading {
             self.entity.nextPageURL = Network.initialPageURL
             self.entity.countries = []
@@ -34,7 +37,7 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
             self.entity.isLoading = true
             self.entity.isLoadedAll = false
             if let url = self.entity.nextPageURL {
-                self.interactor?.fetchPage(url: url)
+                self.interactor?.reloadData(url: url)
             }
         }
     }
@@ -56,14 +59,20 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     
     func loadedPage(page: CountryPageModel) {
         self.entity.nextPageURL = page.nextPage
-        self.entity.countries.append(contentsOf: page.countries)
-        self.makeSections()
         self.entity.isLoading = false
         self.entity.isLoadedAll = page.nextPage == nil
     }
     
     func loadError(error: Error) {
         self.entity.isLoading = false
+        self.entity.isLoadedAll = true
+    }
+    
+    func loadedCountries(countries: [CountryModel]?) {
+        if let countries = countries, !countries.isEmpty, countries != self.entity.countries {
+            self.entity.countries = countries
+            self.makeSections()
+        }
     }
     
     
@@ -82,7 +91,13 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
         for country in self.entity.countries {
             let model = CountryListTableViewCellModel(country: country)
             if let flagURL = country.flagUrl {
-                ImageDownloader.downloadImages(urls: [flagURL]) { images in
+                ImageDownloader.downloadImages(urls: [flagURL]) { [weak self] fileURLs, images in
+                    guard let self = self else { return }
+                    if country.localFlagURL?.lastPathComponent != fileURLs.first?.lastPathComponent {
+                         country.localFlagURL = fileURLs.first
+                        self.interactor?.updateCountry(country: country)
+                    }
+                    
                     DispatchQueue.main.async {
                         country.flagImage = images.first
                         model.loadedImages(country: country)
@@ -96,5 +111,6 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
             self.view?.madeSections(sections: sections)
         }
     }
+    
     
 }

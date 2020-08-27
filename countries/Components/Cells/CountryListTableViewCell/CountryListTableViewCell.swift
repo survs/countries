@@ -33,7 +33,6 @@ class CountryListTableViewCell: UITableViewCell {
         
         self.descriptionLabel.textColor = R.color.secondaryTextColor()
         self.descriptionLabel.font = .systemFont(ofSize: 15, weight: .regular)
-        // Initialization code
     }
     
     func setup() {
