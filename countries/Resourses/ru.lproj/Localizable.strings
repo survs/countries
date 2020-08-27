@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  countries
+
+  Created by Кирилл Баюков on 25.08.2020.
+  Copyright © 2020 bayukov. All rights reserved.
+*/
+
+"country_list" = "Страны";
+"capital" = "Столица";
+"population" = "Население";
+"continent" = "Континент";
+"about_country" = "О стране";
