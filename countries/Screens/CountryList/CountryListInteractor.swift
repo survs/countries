@@ -11,6 +11,7 @@ import Foundation
 protocol CountryListInteractorInput: AnyObject {
     func fetchPage(url: URL)
     func reloadData(url: URL)
+    func updateCountry(country: CountryModel)
 }
 
 protocol CountryListInteractorOutput: AnyObject {
@@ -26,6 +27,7 @@ class CountryListInteractor: CountryListInteractorInput {
     func reloadData(url: URL) {
         CountriesRepository.shared.cleanRepository { [weak self] _ in
             guard let self = self else { return }
+            ImageDownloader.clearImages()
             self.fetchPage(url: url)
         }
     }
@@ -59,6 +61,10 @@ class CountryListInteractor: CountryListInteractorInput {
             guard let self = self else { return }
             self.output?.loadedCountries(countries: countries)
         }
+    }
+    
+    func updateCountry(country: CountryModel) {
+        CountriesRepository.shared.updateCountry(country: country)
     }
     
     

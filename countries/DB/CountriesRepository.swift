@@ -44,8 +44,6 @@ class CountriesRepository {
         do {
             try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeUrl, options: options)
         } catch let error {
-            NSLog("Error: Could not migrate store: \(error.localizedDescription)")
-            
             fatalError("Error: Could not migrate store: \(error.localizedDescription)")
         }
         self.privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
@@ -55,9 +53,25 @@ class CountriesRepository {
     }
     
     func storeCountries(countries: [CountryModel], completion: @escaping(Bool) -> Void) {
+        self.fetchCountries { [weak self] storedCountries in
+            guard let self = self else { return }
+            let countries = countries.filter { newCountry -> Bool in
+                return !(storedCountries?.contains(where: { $0.name == newCountry.name }) ?? false)
+            }
+            if countries.isEmpty {
+                completion(true)
+                return
+            }
+            guard let entity = NSEntityDescription.entity(forEntityName: self.entityName, in: self.privateContext) else { return }
+            let _ = countries.map({ self.privateContext.insert($0.mapToRepository(entity: entity, context: self.privateContext)) })
+            self.savePrivateContext(completion: completion)
+        }
+    }
+    
+    func updateCountry(country: CountryModel) {
         guard let entity = NSEntityDescription.entity(forEntityName: self.entityName, in: self.privateContext) else { return }
-        let _ = countries.map({ self.privateContext.insert($0.mapToRepository(entity: entity, context: self.privateContext)) })
-        self.savePrivateContext(completion: completion)
+        self.privateContext.insert(country.mapToRepository(entity: entity, context: self.privateContext))
+        self.savePrivateContext { _ in }
     }
     
     func fetchCountries(completion: @escaping([CountryModel]?) -> Void) {
@@ -82,17 +96,19 @@ class CountriesRepository {
     }
     
     private func savePrivateContext(completion: @escaping(Bool) -> Void) {
-        if self.privateContext.hasChanges {
-            do {
-                try self.privateContext.save()
-                self.saveMainContext()
-                completion(true)
-            } catch let error {
-                NSLog("Error: Could not save context: \(error.localizedDescription)")
+        self.privateContext.perform {
+            if self.privateContext.hasChanges {
+                do {
+                    try self.privateContext.save()
+                    self.saveMainContext()
+                    completion(true)
+                } catch let error {
+                    NSLog("Error: Could not save context: \(error.localizedDescription)")
+                    completion(false)
+                }
+            } else {
                 completion(false)
             }
-        } else {
-            completion(false)
         }
     }
     

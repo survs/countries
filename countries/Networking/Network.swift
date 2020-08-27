@@ -16,11 +16,11 @@ class Network {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
         config.urlCache = nil
+        // to demonstrate offline working
         return URLSession(configuration: config)
     }
     
     static func fetchPage(url: URL, completion: @escaping(Result<CountryPageModel, Error>) -> Void) {
-        
         
         Network.session.dataTask(with: url) { (data, _, error) in
             if let data = data, let page = try? JSONDecoder().decode(CountryPageResponse.self, from: data) {

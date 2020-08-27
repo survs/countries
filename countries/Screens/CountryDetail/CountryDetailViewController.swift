@@ -40,7 +40,6 @@ class CountryDetailViewController: UIViewController, CountryDetailViewInput {
         super.viewDidLoad()
         self.setupViews()
         self.output?.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     func setupViews() {

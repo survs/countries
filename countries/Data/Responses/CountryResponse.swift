@@ -48,7 +48,7 @@ struct CountryResponse: Decodable {
         model.descriptionShort = self.descriptionShort ?? ""
         model.description = self.description ?? ""
         model.flagPath = self.info?.flag ?? ""
-        if let images = self.info?.images {
+        if let images = self.info?.images, !images.isEmpty {
             model.imagePaths = images
         } else if let image = self.image {
             model.imagePaths = [image]

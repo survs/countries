@@ -21,7 +21,7 @@ public class CountryEntity: NSManagedObject {
     @NSManaged public var flagPath: String?
     @NSManaged public var flagURL: URL?
     @NSManaged public var imagePaths: NSObject?
-    @NSManaged public var imageURLS: NSObject?
+    @NSManaged public var imageURLs: NSObject?
     
     func mapToModel() -> CountryModel {
         let model = CountryModel()
@@ -33,6 +33,8 @@ public class CountryEntity: NSManagedObject {
         model.description = self.desc ?? ""
         model.flagPath = self.flagPath ?? ""
         model.imagePaths = self.imagePaths as? [String] ?? []
+        model.localFlagURL = self.flagURL
+        model.localImageURLs = self.imageURLs as? [URL]
         return model
     }
 }

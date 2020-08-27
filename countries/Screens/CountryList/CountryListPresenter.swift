@@ -69,7 +69,7 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
     }
     
     func loadedCountries(countries: [CountryModel]?) {
-        if let countries = countries, !countries.isEmpty {
+        if let countries = countries, !countries.isEmpty, countries != self.entity.countries {
             self.entity.countries = countries
             self.makeSections()
         }
@@ -91,7 +91,13 @@ class CountryListPresenter: CountryListPresenterInput, CountryListViewOutput, Co
         for country in self.entity.countries {
             let model = CountryListTableViewCellModel(country: country)
             if let flagURL = country.flagUrl {
-                ImageDownloader.downloadImages(urls: [flagURL]) { images in
+                ImageDownloader.downloadImages(urls: [flagURL]) { [weak self] fileURLs, images in
+                    guard let self = self else { return }
+                    if country.localFlagURL?.lastPathComponent != fileURLs.first?.lastPathComponent {
+                         country.localFlagURL = fileURLs.first
+                        self.interactor?.updateCountry(country: country)
+                    }
+                    
                     DispatchQueue.main.async {
                         country.flagImage = images.first
                         model.loadedImages(country: country)
